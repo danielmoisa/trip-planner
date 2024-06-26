@@ -30,6 +30,10 @@ RUN mkdir -m 0755 -p /etc/apt/keyrings/ \
     && echo "deb [signed-by=/etc/apt/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb bookworm main" \
     | tee /etc/apt/sources.list.d/trivy.list
 
+# Install Node.js
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
+    && apt-get install -y nodejs
+
 # Install required system dependencies
 RUN apt-get update \
     && apt-get install -y \

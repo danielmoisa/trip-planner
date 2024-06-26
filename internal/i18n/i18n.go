@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/danielmoisa/trip-planner/internal/config"
 	"github.com/BurntSushi/toml"
+	"github.com/danielmoisa/trip-planner/internal/config"
 	"github.com/nicksnyder/go-i18n/v2/i18n"
 	"github.com/rs/zerolog/log"
 	"golang.org/x/text/language"

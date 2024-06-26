@@ -12,11 +12,11 @@ import (
 	"sync"
 	"testing"
 
+	"github.com/allaboutapps/integresql-client-go"
+	"github.com/allaboutapps/integresql-client-go/pkg/util"
 	"github.com/danielmoisa/trip-planner/internal/config"
 	pUtil "github.com/danielmoisa/trip-planner/internal/util"
 	dbutil "github.com/danielmoisa/trip-planner/internal/util/db"
-	"github.com/allaboutapps/integresql-client-go"
-	"github.com/allaboutapps/integresql-client-go/pkg/util"
 	"github.com/pkg/errors"
 	migrate "github.com/rubenv/sql-migrate"
 	"github.com/volatiletech/sqlboiler/v4/boil"

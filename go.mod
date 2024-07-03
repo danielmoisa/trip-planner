@@ -3,7 +3,7 @@ module github.com/danielmoisa/trip-planner
 go 1.22.4
 
 require (
-	github.com/BurntSushi/toml v1.3.2
+	github.com/BurntSushi/toml v1.4.0
 	github.com/allaboutapps/integresql-client-go v1.0.0
 	github.com/allaboutapps/nullable v1.3.0
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc

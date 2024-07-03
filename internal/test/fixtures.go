@@ -38,6 +38,9 @@ type FixtureMap struct {
 	UserDeactivatedRefreshToken1  *models.RefreshToken
 	User1PushToken                *models.PushToken
 	User1PushTokenAPN             *models.PushToken
+	Trip1                         *models.Trip
+	Trip2                         *models.Trip
+	Trip3                         *models.Trip
 }
 
 // Fixtures returns a function wrapping our fixtures, which tests are allowed to manipulate.
@@ -130,6 +133,31 @@ func Fixtures() FixtureMap {
 		Token:    "0a863a72-d391-4217-9f26-388801684744",
 		UserID:   f.User1.ID,
 		Provider: models.ProviderTypeApn,
+	}
+
+	f.Trip1 = &models.Trip{
+		ID:        "98ad176b-af90-44b7-b991-d9ebfc5dd911",
+		Name:      null.StringFrom("Summer Vacation"),
+		UserID:    f.User1.ID,
+		StartDate: now.AddDate(0, 1, 0), // 1 month from now
+		EndDate:   now.AddDate(0, 1, 7), // 1 month and 7 days from now
+	}
+
+	f.Trip2 = &models.Trip{
+		ID:        "98ad176b-af90-44b7-b991-d9ebfc5dd922",
+		Name:      null.StringFrom("Business Trip"),
+		UserID:    f.User1.ID,
+		StartDate: now.AddDate(0, 2, 0), // 2 months from now
+		EndDate:   now.AddDate(0, 2, 3), // 2 months and 3 days from now
+	}
+
+	f.Trip3 = &models.Trip{
+		ID:        "98ad176b-af90-44b7-b991-d9ebfc5dd933",
+		Name:      null.StringFrom("Winter Getaway"),
+		UserID:    f.User2.ID,
+		StartDate: now.AddDate(0, 6, 0), // 6 months from now
+		EndDate:   now.AddDate(0, 6, 5), // 6 months and 5 days from now
+
 	}
 
 	return f

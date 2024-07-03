@@ -13,7 +13,7 @@ CREATE TABLE trips (
 CREATE INDEX idx_tripss_fk_user_uid ON trips USING btree (user_id);
 
 ALTER TABLE trips
-    ADD CONSTRAINT trips_user_id_fkey FOREIGN KEY (user_id) REFERENCES users (id) ON UPDATE CASCADE;
+    ADD CONSTRAINT trips_user_id_fkey FOREIGN KEY (user_id) REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 -- +migrate Down
 DROP TABLE IF EXISTS trips;

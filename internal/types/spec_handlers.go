@@ -38,8 +38,11 @@ func (o *SwaggerSpec) initHandlerCache() {
 
 	o.Handlers["GET"]["/-/healthy"] = true
 	o.Handlers["GET"]["/api/v1/push/test"] = true
+	o.Handlers["GET"]["/api/v1/trips/random"] = true
 	o.Handlers["GET"]["/-/ready"] = true
 	o.Handlers["GET"]["/swagger.yml"] = true
+	o.Handlers["GET"]["/api/v1/trips/{id}"] = true
+	o.Handlers["GET"]["/api/v1/trips"] = true
 	o.Handlers["GET"]["/api/v1/auth/userinfo"] = true
 	o.Handlers["GET"]["/-/version"] = true
 	o.Handlers["POST"]["/api/v1/auth/change-password"] = true

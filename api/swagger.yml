@@ -321,6 +321,79 @@ paths:
           description: PublicHTTPError, type `PUSH_TOKEN_ALREADY_EXISTS`
           schema:
             $ref: '#/definitions/publicHttpError'
+  /api/v1/trips:
+    get:
+      security:
+      - Bearer: []
+      description: Get all trips
+      tags:
+      - trips
+      summary: Get trips
+      operationId: GetTripsRoute
+      parameters:
+      - minimum: 1
+        type: integer
+        default: 1
+        description: page
+        name: page
+        in: query
+      - maximum: 80
+        minimum: 1
+        type: integer
+        default: 25
+        description: per_page
+        name: per_page
+        in: query
+      - type: string
+        x-nullable: true
+        description: Returns all trips matching the supplied name, if you need to
+          add spaces just add an underscore (_).
+        name: trip_name
+        in: query
+      responses:
+        "200":
+          description: GetTripsResponse
+          schema:
+            $ref: '#/definitions/getTripsResponse'
+  /api/v1/trips/random:
+    get:
+      security:
+      - Bearer: []
+      description: Gets a random trip from the API, this takes no paramaters.
+      tags:
+      - trips
+      summary: Get Random Trip
+      operationId: GetRandomTripRoute
+      responses:
+        "200":
+          description: GetTripsResponse
+          schema:
+            $ref: '#/definitions/getTripsResponse'
+  /api/v1/trips/{id}:
+    get:
+      security:
+      - Bearer: []
+      description: Gets a trip from the api using the trips id.
+      tags:
+      - trips
+      summary: Get a Single Trip
+      operationId: GetTripRoute
+      parameters:
+      - minimum: 1
+        type: integer
+        description: TripID
+        name: id
+        in: path
+        required: true
+      responses:
+        "200":
+          description: GetTripsResponse
+          schema:
+            $ref: '#/definitions/getTripsResponse'
+        "404":
+          description: PublicHTTPError, type `TRIP_NOT_FOUND`
+          schema:
+            $ref: '#/definitions/publicHttpError'
   /swagger.yml:
     get:
       description: |-
@@ -336,6 +409,10 @@ paths:
         "200":
           description: OK
 definitions:
+  getTripsResponse:
+    type: array
+    items:
+      $ref: '#/definitions/trip'
   getUserInfoResponse:
     type: object
     required:
@@ -767,6 +844,24 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/httpValidationErrorDetail'
+  trip:
+    type: object
+    title: trip
+    required:
+    - id
+    - name
+    - startDate
+    - endDate
+    properties:
+      endDate:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      startDate:
+        type: string
+    additionalProperties: false
 responses:
   AuthForbiddenResponse:
     description: PublicHTTPError, type `USER_DEACTIVATED`/`NOT_LOCAL_USER`

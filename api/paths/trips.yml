@@ -1,0 +1,132 @@
+swagger: "2.0"
+info:
+  title: trips
+  version: 0.1.0
+paths:
+  /api/v1/trips:
+    get:
+      security:
+        - Bearer: []
+      summary: Get trips
+      operationId: GetTripsRoute
+      description: |-
+        Get all trips
+      tags:
+        - trips
+      parameters:
+        - minimum: 1
+          type: integer
+          default: 1
+          description: page
+          name: page
+          in: query
+
+        - minimum: 1
+          type: integer
+          default: 25
+          maximum: 80
+          description: per_page
+          name: per_page
+          in: query
+
+        - type: string
+          required: false
+          x-nullable: true
+          description: Returns all trips matching the supplied name, if you need to add spaces just add an underscore (_).
+          name: trip_name
+          in: query
+
+        # TBA, queries not supported currently
+        # - type: string
+        #   required: false
+        #   x-nullable: true
+        #   description: Returns all beers matching the supplied yeast name, this performs a fuzzy match, if you need to add spaces just add an underscore (_).
+        #   name: yeast
+        #   in: query
+        # - type: string
+        #   required: false
+        #   x-nullable: true
+        #   format: date-time
+        #   description: Returns all beers brewed before this date, the date format is mm-yyyy e.g 10-2011
+        #   name: brewed_before
+        #   in: query
+        # - type: string
+        #   required: false
+        #   x-nullable: true
+        #   format: date-time
+        #   description: Returns all beers brewed after this date, the date format is mm-yyyy e.g 10-2011
+        #   name: brewed_after
+        #   in: query
+        # - type: string
+        #   required: false
+        #   x-nullable: true
+        #   description: Returns all beers matching the supplied hops name, this performs a fuzzy match, if you need to add spaces just add an underscore (_).
+        #   name: hops
+        #   in: query
+        # - type: string
+        #   required: false
+        #   x-nullable: true
+        #   description: Returns all beers matching the supplied malt name, this performs a fuzzy match, if you need to add spaces just add an underscore (_).
+        #   name: malt
+        #   in: query
+        # - type: string
+        #   required: false
+        #   x-nullable: true
+        #   description: Returns all beers matching the supplied food string, this performs a fuzzy match, if you need to add spaces just add an underscore (_).
+        #   name: food
+        #   in: query
+        # - type: string
+        #   required: false
+        #   x-nullable: true
+        #   description: Returns all beers matching the supplied ID's. You can pass in multiple ID's by separating them with a | symbol.
+        #   name: ids
+        #   in: query
+
+      responses:
+        "200":
+          description: GetTripsResponse
+          schema:
+            $ref: ../definitions/trips.yml#/definitions/GetTripsResponse
+
+  /api/v1/trips/{id}:
+    get:
+      security:
+        - Bearer: []
+      summary: Get a Single Trip
+      operationId: GetTripRoute
+      description: |-
+        Gets a trip from the api using the trips id.
+      tags:
+        - trips
+      parameters:
+        - minimum: 1
+          type: integer
+          description: TripID
+          name: id
+          in: path
+          required: true
+      responses:
+        "200":
+          description: GetTripsResponse
+          schema:
+            $ref: ../definitions/trips.yml#/definitions/GetTripsResponse
+        "404":
+          description: "PublicHTTPError, type `TRIP_NOT_FOUND`"
+          schema:
+            $ref: "../definitions/errors.yml#/definitions/PublicHTTPError"
+
+  /api/v1/trips/random:
+    get:
+      security:
+        - Bearer: []
+      summary: Get Random Trip
+      operationId: GetRandomTripRoute
+      description: |-
+        Gets a random trip from the API, this takes no paramaters.
+      tags:
+        - trips
+      responses:
+        "200":
+          description: GetTripsResponse
+          schema:
+            $ref: ../definitions/trips.yml#/definitions/GetTripsResponse

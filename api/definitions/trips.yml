@@ -1,0 +1,28 @@
+swagger: "2.0"
+info:
+  title: Trip
+  version: 0.1.0
+paths: {}
+definitions:
+  GetTripsResponse:
+    type: array
+    items:
+      $ref: "#/definitions/Trip"
+  Trip:
+    type: object
+    additionalProperties: false
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      startDate:
+        type: string
+      endDate:
+        type: string
+    required:
+      - id
+      - name
+      - startDate
+      - endDate
+    title: trip

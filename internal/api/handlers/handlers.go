@@ -6,6 +6,7 @@ import (
 	"github.com/danielmoisa/trip-planner/internal/api/handlers/auth"
 	"github.com/danielmoisa/trip-planner/internal/api/handlers/common"
 	"github.com/danielmoisa/trip-planner/internal/api/handlers/push"
+	"github.com/danielmoisa/trip-planner/internal/api/handlers/trips"
 	"github.com/labstack/echo/v4"
 )
 
@@ -26,5 +27,6 @@ func AttachAllRoutes(s *api.Server) {
 		common.GetVersionRoute(s),
 		push.GetPushTestRoute(s),
 		push.PostUpdatePushTokenRoute(s),
+		trips.GetTripsRoute(s),
 	}
 }

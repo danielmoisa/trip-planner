@@ -25,7 +25,8 @@ type Trip struct {
 
 	// id
 	// Required: true
-	ID *string `json:"id"`
+	// Format: uuid4
+	ID *strfmt.UUID4 `json:"id"`
 
 	// name
 	// Required: true
@@ -74,6 +75,10 @@ func (m *Trip) validateEndDate(formats strfmt.Registry) error {
 func (m *Trip) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("id", "body", "uuid4", m.ID.String(), formats); err != nil {
 		return err
 	}
 

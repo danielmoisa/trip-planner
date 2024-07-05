@@ -11,7 +11,6 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime/middleware"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
@@ -33,10 +32,9 @@ type GetTripRouteParams struct {
 
 	/*TripID
 	  Required: true
-	  Minimum: 1
 	  In: path
 	*/
-	ID int64 `param:"id"`
+	ID strfmt.UUID4 `param:"id"`
 }
 
 // BindRequest both binds and validates a request, it assumes that complex things implement a Validatable(strfmt.Registry) error interface
@@ -86,11 +84,12 @@ func (o *GetTripRouteParams) bindID(rawData []string, hasKey bool, formats strfm
 	// Required: true
 	// Parameter is provided by construction from the route
 
-	value, err := swag.ConvertInt64(raw)
+	// Format: uuid4
+	value, err := formats.Parse("uuid4", raw)
 	if err != nil {
-		return errors.InvalidType("id", "path", "int64", raw)
+		return errors.InvalidType("id", "path", "strfmt.UUID4", raw)
 	}
-	o.ID = value
+	o.ID = *(value.(*strfmt.UUID4))
 
 	if err := o.validateID(formats); err != nil {
 		return err
@@ -102,9 +101,8 @@ func (o *GetTripRouteParams) bindID(rawData []string, hasKey bool, formats strfm
 // validateID carries on validations for parameter ID
 func (o *GetTripRouteParams) validateID(formats strfmt.Registry) error {
 
-	if err := validate.MinimumInt("id", "path", o.ID, 1, false); err != nil {
+	if err := validate.FormatOf("id", "path", "uuid4", o.ID.String(), formats); err != nil {
 		return err
 	}
-
 	return nil
 }

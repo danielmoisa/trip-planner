@@ -100,7 +100,8 @@ paths:
         - trips
       parameters:
         - minimum: 1
-          type: integer
+          type: string
+          format: uuid4
           description: TripID
           name: id
           in: path

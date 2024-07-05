@@ -380,7 +380,8 @@ paths:
       operationId: GetTripRoute
       parameters:
       - minimum: 1
-        type: integer
+        type: string
+        format: uuid4
         description: TripID
         name: id
         in: path
@@ -857,6 +858,7 @@ definitions:
         type: string
       id:
         type: string
+        format: uuid4
       name:
         type: string
       startDate:

@@ -1,0 +1,6 @@
+(types.PublicHTTPError) {
+  Code: (*int64)(400),
+  Detail: (string) "",
+  Title: (*string)((len=11) "Bad Request"),
+  Type: (*string)((len=7) "generic")
+}

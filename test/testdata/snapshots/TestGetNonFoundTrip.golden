@@ -1,0 +1,6 @@
+(types.PublicHTTPError) {
+  Code: (*int64)(404),
+  Detail: (string) "",
+  Title: (*string)((len=70) "No trip found that matches the ID c81618fb-3a83-40ab-935a-e3f639949e00"),
+  Type: (*string)((len=14) "TRIP_NOT_FOUND")
+}

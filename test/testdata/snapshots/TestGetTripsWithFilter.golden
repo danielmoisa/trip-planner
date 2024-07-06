@@ -1,20 +1,8 @@
-(types.GetTripsResponse) (len=3) {
+(types.GetTripsResponse) (len=1) {
   (*types.Trip)({
-    EndDate: (*string)((len=10) "2024-08-12"),
-    ID: (*strfmt.UUID4)((len=36) 98ad176b-af90-44b7-b991-d9ebfc5dd911),
-    Name: (*string)((len=15) "Summer Vacation"),
-    StartDate: (*string)((len=10) "2024-08-05")
-  }),
-  (*types.Trip)({
-    EndDate: (*string)((len=10) "2024-09-08"),
-    ID: (*strfmt.UUID4)((len=36) 98ad176b-af90-44b7-b991-d9ebfc5dd922),
-    Name: (*string)((len=13) "Business Trip"),
-    StartDate: (*string)((len=10) "2024-09-05")
-  }),
-  (*types.Trip)({
-    EndDate: (*string)((len=10) "2025-01-10"),
+    EndDate: (*string)((len=10) "2025-01-11"),
     ID: (*strfmt.UUID4)((len=36) 98ad176b-af90-44b7-b991-d9ebfc5dd933),
     Name: (*string)((len=14) "Winter Getaway"),
-    StartDate: (*string)((len=10) "2025-01-05")
+    StartDate: (*string)((len=10) "2025-01-06")
   })
 }

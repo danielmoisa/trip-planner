@@ -33,7 +33,7 @@ func TestGetTripsWithFilter(t *testing.T) {
 	t.Parallel()
 	test.WithTestServer(t, func(s *api.Server) {
 		fixtures := test.Fixtures()
-		res := test.PerformRequest(t, s, "GET", "/api/v1/trips?per_page=10&page=1&trip_name=Winter%Getaway", nil, test.HeadersWithAuth(t, fixtures.User1AccessToken1.Token))
+		res := test.PerformRequest(t, s, "GET", "/api/v1/trips?per_page=10&page=1&trip_name=Winter%20Getaway", nil, test.HeadersWithAuth(t, fixtures.User1AccessToken1.Token))
 		require.Equal(t, http.StatusOK, res.Result().StatusCode)
 
 		var response types.GetTripsResponse
@@ -41,7 +41,11 @@ func TestGetTripsWithFilter(t *testing.T) {
 
 		assert.NotEmpty(t, response)
 		for _, trip := range response {
-			assert.Contains(t, trip.Name, "Test")
+			if trip.Name == nil {
+				t.Errorf("Trip name is nil")
+				continue
+			}
+			assert.Contains(t, *trip.Name, "Winter Getaway", "Trip name should contain 'Winter Getaway'")
 		}
 		test.Snapshoter.Save(t, response)
 	})

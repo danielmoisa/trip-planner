@@ -1,0 +1,8 @@
+(types.GetTripsResponse) (len=1) {
+  (*types.Trip)({
+    EndDate: (*string)((len=10) "2024-08-13"),
+    ID: (*strfmt.UUID4)((len=36) 98ad176b-af90-44b7-b991-d9ebfc5dd911),
+    Name: (*string)((len=15) "Summer Vacation"),
+    StartDate: (*string)((len=10) "2024-08-06")
+  })
+}

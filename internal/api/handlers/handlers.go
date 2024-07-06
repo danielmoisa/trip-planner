@@ -27,6 +27,7 @@ func AttachAllRoutes(s *api.Server) {
 		common.GetVersionRoute(s),
 		push.GetPushTestRoute(s),
 		push.PostUpdatePushTokenRoute(s),
+		trips.GetRandomBeerRoute(s),
 		trips.GetTripRoute(s),
 		trips.GetTripsRoute(s),
 	}

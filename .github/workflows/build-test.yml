@@ -26,7 +26,7 @@ jobs:
         ports:
           - 5432:5432
       integresql:
-        image: ghcr.io/allaboutapps/integresql:v1.1.0
+        image: allaboutapps/integresql:latest
         env:
           PGHOST: "postgres"
           PGUSER: "dbuser"
@@ -34,15 +34,15 @@ jobs:
       mailhog:
         image: mailhog/mailhog
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v2.3.4
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-            node-version: '20' 
+          node-version: '20'
       - name: docker build (target builder)
-        run: DOCKER_BUILDKIT=1 docker build --target builder --file Dockerfile --tag allaboutapps.dev/aw/go-starter:builder-${GITHUB_SHA} .
+        run: docker build --target builder --file Dockerfile --tag allaboutapps.dev/aw/go-starter:builder-${GITHUB_SHA} .
       - name: docker build (target app)
-        run: DOCKER_BUILDKIT=1 docker build --target app --file Dockerfile --tag allaboutapps.dev/aw/go-starter:app-${GITHUB_SHA} .
+        run: docker build --target app --file Dockerfile --tag allaboutapps.dev/aw/go-starter:app-${GITHUB_SHA} .
       - name: trivy scan
         uses: aquasecurity/trivy-action@master
         with:
@@ -84,7 +84,7 @@ jobs:
         # To use Code Scanning with Dependabot, please ensure you are using the "pull_request" event for this workflow and avoid triggering on the "push" event for Dependabot branches.
         # See https://docs.github.com/en/code-security/secure-coding/configuring-code-scanning#scanning-on-push for more information on how to configure these events.
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }} 
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v1
         with:
           sarif_file: 'trivy-results.sarif'
       - name: stop container
@@ -97,6 +97,6 @@ jobs:
     runs-on: ubuntu-latest
     container: swaggerapi/swagger-codegen-cli
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v2.3.4
       - name: run the main swagger.yml validation
         run: java -jar /opt/swagger-codegen-cli/swagger-codegen-cli.jar validate -i ./api/swagger.yml

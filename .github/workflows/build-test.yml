@@ -40,7 +40,7 @@ jobs:
         image: mailhog/mailhog
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4.1.7
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
@@ -98,7 +98,7 @@ jobs:
   swagger-codegen-cli:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4.1.7
       - name: Validate Swagger
         uses: docker://swaggerapi/swagger-codegen-cli:latest
         with:

@@ -97,15 +97,9 @@ jobs:
 
   swagger-codegen-cli:
     runs-on: ubuntu-latest
-    container:
-      image: swaggerapi/swagger-codegen-cli:latest
-      options: --user root
     steps:
-      - uses: actions/checkout@v4.1.7
-      - name: Update system and install Node.js
-        run: |
-          apk update
-          apk upgrade
-          apk add --no-cache nodejs npm
-      - name: Run Swagger validation
-        run: java -jar /opt/swagger-codegen-cli/swagger-code
+      - uses: actions/checkout@v3
+      - name: Validate Swagger
+        uses: docker://swaggerapi/swagger-codegen-cli:latest
+        with:
+          args: validate -i ./api/swagger.yml

@@ -35,6 +35,10 @@ jobs:
         image: mailhog/mailhog
     steps:
       - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+            node-version: '20' 
       - name: docker build (target builder)
         run: DOCKER_BUILDKIT=1 docker build --target builder --file Dockerfile --tag allaboutapps.dev/aw/go-starter:builder-${GITHUB_SHA} .
       - name: docker build (target app)

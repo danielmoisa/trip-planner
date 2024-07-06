@@ -1,11 +1,11 @@
-# Production ready golang rest api example
+# Next js and Golang example
 
 **trip-planner** is an opinionated *production-ready* RESTful JSON backend template written in [Go](https://golang.org/), highly integrated with [VSCode DevContainers](https://code.visualstudio.com/docs/remote/containers).
 
 
 ## Table of Contents
 
-- [Production ready golang rest api example](#production-ready-golang-rest-api-example)
+- [Next js and Golang example](#next-js-and-golang-example)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
     - [Requirements](#requirements)

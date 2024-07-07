@@ -11,11 +11,11 @@ import (
 	"github.com/volatiletech/sqlboiler/v4/queries/qm"
 )
 
-func GetRandomBeerRoute(s *api.Server) *echo.Route {
-	return s.Router.APIV1Trips.GET("/random", getRandomBeerHandler(s))
+func GetRandomTripRoute(s *api.Server) *echo.Route {
+	return s.Router.APIV1Trips.GET("/random", getRandomTripHandler(s))
 }
 
-func getRandomBeerHandler(s *api.Server) echo.HandlerFunc {
+func getRandomTripHandler(s *api.Server) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		ctx := c.Request().Context()
 		log := util.LogFromContext(ctx)

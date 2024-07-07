@@ -27,3 +27,56 @@ definitions:
       - startDate
       - endDate
     title: trip
+
+  PostTripPayload:
+    type: object
+    required:
+      - name
+      - startDate
+      - endDate
+    properties:
+      startDate:
+        description: Start date of the trip
+        type: string
+        maxLength: 255
+        minLength: 1
+        example: correct horse battery staple
+      endDate:
+        description: End date of the trip
+        type: string
+        maxLength: 255
+        minLength: 1
+        example: correct horse battery staple
+      name:
+        description: Name of the trip
+        type: string
+        maxLength: 255
+        minLength: 1
+        example: My trip
+
+  PublicHTTPError:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      type:
+        type: string
+
+responses:
+  InvalidPayloadResponse:
+    description: Invalid payload provided
+    schema:
+      $ref: "#/definitions/PublicHTTPError"
+
+  UnauthorizedResponse:
+    description: Unauthorized access
+    schema:
+      $ref: "#/definitions/PublicHTTPError"
+
+  InternalServerErrorResponse:
+    description: Internal server error
+    schema:
+      $ref: "#/definitions/PublicHTTPError"

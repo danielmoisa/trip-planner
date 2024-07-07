@@ -355,6 +355,39 @@ paths:
           description: GetTripsResponse
           schema:
             $ref: '#/definitions/getTripsResponse'
+    post:
+      description: Creates a new trip
+      tags:
+      - trips
+      summary: Registers a new trip for the user
+      operationId: PostTripRoute
+      parameters:
+      - name: Payload
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/postTripPayload'
+      responses:
+        "201":
+          description: Trip created successfully
+          schema:
+            $ref: '#/definitions/trip'
+        "400":
+          description: Invalid payload provided
+          schema:
+            $ref: '#/definitions/postTripRouteBadRequestBody'
+        "401":
+          description: Unauthorized access
+          schema:
+            $ref: '#/definitions/postTripRouteBadRequestBody'
+        "409":
+          description: PublicHTTPError, type `TRIP_ALREADY_EXISTS`
+          schema:
+            $ref: '#/definitions/publicHttpError'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/postTripRouteBadRequestBody'
   /api/v1/trips/random:
     get:
       security:
@@ -782,6 +815,42 @@ definitions:
         maxLength: 255
         minLength: 1
         example: user@example.com
+  postTripPayload:
+    type: object
+    required:
+    - name
+    - startDate
+    - endDate
+    properties:
+      endDate:
+        description: End date of the trip
+        type: string
+        maxLength: 255
+        minLength: 1
+        example: correct horse battery staple
+      name:
+        description: Name of the trip
+        type: string
+        maxLength: 255
+        minLength: 1
+        example: My trip
+      startDate:
+        description: Start date of the trip
+        type: string
+        maxLength: 255
+        minLength: 1
+        example: correct horse battery staple
+  postTripRouteBadRequestBody:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      type:
+        type: string
+    x-go-gen-location: operations
   postUpdatePushTokenPayload:
     type: object
     required:

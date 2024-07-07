@@ -52,5 +52,6 @@ func (o *SwaggerSpec) initHandlerCache() {
 	o.Handlers["POST"]["/api/v1/auth/logout"] = true
 	o.Handlers["POST"]["/api/v1/auth/refresh"] = true
 	o.Handlers["POST"]["/api/v1/auth/register"] = true
+	o.Handlers["POST"]["/api/v1/trips"] = true
 	o.Handlers["PUT"]["/api/v1/push/token"] = true
 }

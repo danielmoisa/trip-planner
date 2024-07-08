@@ -85,7 +85,7 @@ jobs:
           docker run --env-file $DOCKER_ENV_FILE --network "${{ job.services.postgres.network }}" allaboutapps.dev/aw/go-starter:app-${GITHUB_SHA} -v
           docker run --env-file $DOCKER_ENV_FILE --network "${{ job.services.postgres.network }}" allaboutapps.dev/aw/go-starter:app-${GITHUB_SHA} env
       - name: Upload Trivy scan results
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: "trivy-results.sarif"
       - name: Stop container
